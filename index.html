@@ -16,76 +16,51 @@
 
     <main>
         <div class="card">
-            <h2>1. Auslegungs- & Simulations-Parameter</h2>
-            <p class="info-text">Hier können die Anlagendaten (gemäß Typenschild oder für eine Simulation) angepasst werden.</p>
+            <h2>1. Anlagenauslegung (zur Ermittlung des Wirkungsgrades)</h2>
+            <p class="info-text">Geben Sie hier die bekannten Auslegungspunkte (z.B. vom Typenschild) ein. Daraus wird die Effizienz der Anlage berechnet.</p>
             <div class="data-grid">
-                <div class="input-group">
-                    <label>Eintrittstemperatur (°C)</label>
-                    <input type="number" id="design-temp-in" value="26.0" step="0.1">
-                </div>
-                <div class="input-group">
-                    <label>Eintrittsfeuchte (%)</label>
-                    <input type="number" id="design-rh-in" value="50.0" step="0.1">
-                </div>
-                <div class="input-group">
-                    <label>Austrittstemperatur (°C)</label>
-                    <input type="number" id="design-temp-out" value="19.0" step="0.1">
-                </div>
-                 <div class="input-group">
-                    <label>Austrittsfeuchte (%)</label>
-                    <input type="number" id="design-rh-out" value="97.0" step="0.1">
-                </div>
+                <div class="input-group"><label>Eintrittstemperatur (T<sub>ein</sub>)</label><input type="number" id="design-temp-in" value="26.0" step="0.1"></div>
+                <div class="input-group"><label>Eintrittsfeuchte (rH<sub>ein</sub>)</label><input type="number" id="design-rh-in" value="50.0" step="0.1"></div>
+                <div class="input-group"><label>Austrittstemperatur (T<sub>aus</sub>)</label><input type="number" id="design-temp-out" value="20.0" step="0.1"></div>
             </div>
         </div>
 
         <div class="card">
-            <h2>2. Performance-Analyse (Einzelanlage)</h2>
+            <h2>2. Live-Performance & Simulation</h2>
             <div class="live-grid">
                 <div class="input-section">
-                    <h4>Betriebspunkt einer Anlage:</h4>
-                    <div class="input-group">
-                        <label for="volumenstrom">Volumenstrom (m³/h)</label>
-                        <input type="number" id="volumenstrom" value="13210" step="100">
-                    </div>
-                     <div class="results-box" id="design-results">
-                        <h4>Berechnete Performance</h4>
-                        <p><strong>Befeuchterwirkungsgrad (η):</strong> <span id="res-eta-design">--</span> %</p>
-                        <p><strong>Wasserverbrauch (Netto):</strong> <span id="res-water-design">--</span> l/h</p>
-                        <p><strong>Sensibles Kältepotential:</strong> <span id="res-power-design">--</span> kW</p>
-                    </div>
+                    <h4>Aktuelle Betriebs-Werte:</h4>
+                    <div class="input-group"><label for="volumenstrom">Volumenstrom (m³/h)</label><input type="number" id="volumenstrom" value="13210" step="100"></div>
+                    <div class="input-group"><label for="live-temp-in">Eintrittstemperatur (°C)</label><input type="number" id="live-temp-in" value="26.0" step="0.1"></div>
+                    <div class="input-group"><label for="live-rh-in">Eintrittsfeuchte (%)</label><input type="number" id="live-rh-in" value="50.0" step="0.1"></div>
                 </div>
 
-                <div class="process-visualization">
-                    <div class="state-node" id="node-in">
-                        <h4>Zustand VOR Befeuchter</h4>
-                        <p>Temperatur (T): <strong id="vis-t-in">-- °C</strong></p>
-                        <p>Rel. Feuchte (rH): <strong id="vis-rh-in">-- %</strong></p>
-                        <p>Abs. Feuchte (x): <strong id="vis-x-in">-- g/kg</strong></p>
-                        <p>Enthalpie (h): <strong id="vis-h-in">-- kJ/kg</strong></p>
-                        <p>Taupunkt (T<sub>dp</sub>): <strong id="vis-tdp-in">-- °C</strong></p>
-                    </div>
-                    <div class="arrow">→</div>
-                    <div class="state-node" id="node-out">
-                        <h4>Zustand NACH Befeuchter</h4>
-                        <p>Temperatur (T): <strong id="vis-t-out">-- °C</strong></p>
-                        <p>Rel. Feuchte (rH): <strong id="vis-rh-out">-- %</strong></p>
-                        <p>Abs. Feuchte (x): <strong id="vis-x-out">-- g/kg</strong></p>
-                        <p>Enthalpie (h): <strong id="vis-h-out">-- kJ/kg</strong></p>
-                         <p>Taupunkt (T<sub>dp</sub>): <strong id="vis-tdp-out">-- °C</strong></p>
-                    </div>
+                <div class="results-box" id="design-results">
+                    <h4>Berechnete Performance bei aktuellen Werten</h4>
+                    <p><strong>System-Wirkungsgrad (η):</strong> <span id="res-eta-system">--</span> %</p>
+                    <p><strong>Wasserverbrauch (Netto):</strong> <span id="res-water-live">--</span> l/h</p>
+                    <p><strong>Sensibles Kältepotential:</strong> <span id="res-power-live">--</span> kW</p>
                 </div>
             </div>
-        </div>
-
-        <div class="card aggregate-card">
-            <h2>3. Simulation der Gesamtanlagen</h2>
-             <div class="input-group">
-                <label for="total-volumenstrom">Gesamt-Volumenstrom aller Anlagen (m³/h)</label>
-                <input type="number" id="total-volumenstrom" value="105680" step="100">
-            </div>
-            <div class="total-results">
-                <p>Gesamter Wasserverbrauch (Netto): <strong id="total-water">-- l/h</strong></p>
-                <p>Gesamtes Kältepotential: <strong id="total-power">-- kW</strong></p>
+            <hr>
+            <div class="process-visualization">
+                <div class="state-node" id="node-in">
+                    <h4>Zustand VOR Befeuchter</h4>
+                    <p>Temperatur (T): <strong id="vis-t-in">-- °C</strong></p>
+                    <p>Rel. Feuchte (rH): <strong id="vis-rh-in">-- %</strong></p>
+                    <p>Abs. Feuchte (x): <strong id="vis-x-in">-- g/kg</strong></p>
+                    <p>Enthalpie (h): <strong id="vis-h-in">-- kJ/kg</strong></p>
+                    <p>Feuchtkugel (T<sub>wb</sub>): <strong id="vis-twb-in">-- °C</strong></p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="state-node final-state" id="node-out">
+                    <h4>Zustand NACH Befeuchter</h4>
+                    <p>Temperatur (T): <strong id="vis-t-out">-- °C</strong></p>
+                    <p>Rel. Feuchte (rH): <strong id="vis-rh-out">-- %</strong></p>
+                    <p>Abs. Feuchte (x): <strong id="vis-x-out">-- g/kg</strong></p>
+                    <p>Enthalpie (h): <strong id="vis-h-out">-- kJ/kg</strong></p>
+                    <p>Feuchtkugel (T<sub>wb</sub>): <strong id="vis-twb-out">-- °C</strong></p>
+                </div>
             </div>
         </div>
     </main>
