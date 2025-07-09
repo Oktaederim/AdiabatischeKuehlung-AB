@@ -16,44 +16,42 @@
 
     <main>
         <div class="card">
-            <h2>1. Analyse der Auslegungsdaten (gemäß Typenschild)</h2>
+            <h2>1. Auslegungs- & Simulations-Parameter</h2>
+            <p class="info-text">Hier können die Anlagendaten (gemäß Typenschild oder für eine Simulation) angepasst werden.</p>
             <div class="data-grid">
-                <div class="data-group">
-                    <h4>Eintritts-Bedingungen</h4>
-                    <p><strong>Temperatur:</strong> 26,0 °C</p>
-                    <p><strong>Rel. Feuchte:</strong> 50,0 %</p>
-                    <p><strong>Volumenstrom:</strong> 13.210 m³/h</p>
+                <div class="input-group">
+                    <label>Eintrittstemperatur (°C)</label>
+                    <input type="number" id="design-temp-in" value="26.0" step="0.1">
                 </div>
-                <div class="data-group">
-                    <h4>Austritts-Bedingungen (Soll)</h4>
-                    <p><strong>Temperatur:</strong> 19,0 °C</p>
-                    <p><strong>Rel. Feuchte:</strong> 97,0 %</p>
+                <div class="input-group">
+                    <label>Eintrittsfeuchte (%)</label>
+                    <input type="number" id="design-rh-in" value="50.0" step="0.1">
                 </div>
-                <div class="data-group results-box" id="design-results">
-                    <h4>Berechnete Auslegungs-Performance</h4>
-                    <p><strong>Befeuchterwirkungsgrad (η):</strong> <span id="res-eta-design">--</span> %</p>
-                    <p><strong>Wasserverbrauch:</strong> <span id="res-water-design">--</span> l/h</p>
-                    <p><strong>Sensibles Kältepotential:</strong> <span id="res-power-design">--</span> kW</p>
+                <div class="input-group">
+                    <label>Austrittstemperatur (°C)</label>
+                    <input type="number" id="design-temp-out" value="19.0" step="0.1">
+                </div>
+                 <div class="input-group">
+                    <label>Austrittsfeuchte (%)</label>
+                    <input type="number" id="design-rh-out" value="97.0" step="0.1">
                 </div>
             </div>
         </div>
 
         <div class="card">
-            <h2>2. Live-Analyse & Simulation</h2>
+            <h2>2. Performance-Analyse (Einzelanlage)</h2>
             <div class="live-grid">
                 <div class="input-section">
-                    <h4>Aktuelle Betriebs-Werte eingeben:</h4>
+                    <h4>Betriebspunkt einer Anlage:</h4>
                     <div class="input-group">
-                        <label for="volumenstrom">Aktueller Volumenstrom (m³/h)</label>
+                        <label for="volumenstrom">Volumenstrom (m³/h)</label>
                         <input type="number" id="volumenstrom" value="13210" step="100">
                     </div>
-                    <div class="input-group">
-                        <label for="tempIn">Aktuelle Eintrittstemperatur (°C)</label>
-                        <input type="number" id="tempIn" value="26.0" step="0.1">
-                    </div>
-                    <div class="input-group">
-                        <label for="rhIn">Aktuelle Eintrittsfeuchte (%)</label>
-                        <input type="number" id="rhIn" value="50.0" step="0.1">
+                     <div class="results-box" id="design-results">
+                        <h4>Berechnete Performance</h4>
+                        <p><strong>Befeuchterwirkungsgrad (η):</strong> <span id="res-eta-design">--</span> %</p>
+                        <p><strong>Wasserverbrauch (Netto):</strong> <span id="res-water-design">--</span> l/h</p>
+                        <p><strong>Sensibles Kältepotential:</strong> <span id="res-power-design">--</span> kW</p>
                     </div>
                 </div>
 
@@ -64,14 +62,7 @@
                         <p>Rel. Feuchte (rH): <strong id="vis-rh-in">-- %</strong></p>
                         <p>Abs. Feuchte (x): <strong id="vis-x-in">-- g/kg</strong></p>
                         <p>Enthalpie (h): <strong id="vis-h-in">-- kJ/kg</strong></p>
-                        <p>Feuchtkugel (T<sub>wb</sub>): <strong id="vis-twb-in">-- °C</strong></p>
-                    </div>
-                    <div class="arrow">→</div>
-                    <div class="component-node">
-                        <h4>Adiabatischer Prozess</h4>
-                        <p>Wirkungsgrad (η): <strong id="vis-eta">-- %</strong></p>
-                        <p>Wasserverbrauch: <strong id="vis-water">-- l/h</strong></p>
-                        <p>Kältepotential: <strong id="vis-power">-- kW</strong></p>
+                        <p>Taupunkt (T<sub>dp</sub>): <strong id="vis-tdp-in">-- °C</strong></p>
                     </div>
                     <div class="arrow">→</div>
                     <div class="state-node" id="node-out">
@@ -80,8 +71,21 @@
                         <p>Rel. Feuchte (rH): <strong id="vis-rh-out">-- %</strong></p>
                         <p>Abs. Feuchte (x): <strong id="vis-x-out">-- g/kg</strong></p>
                         <p>Enthalpie (h): <strong id="vis-h-out">-- kJ/kg</strong></p>
+                         <p>Taupunkt (T<sub>dp</sub>): <strong id="vis-tdp-out">-- °C</strong></p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="card aggregate-card">
+            <h2>3. Simulation der Gesamtanlagen</h2>
+             <div class="input-group">
+                <label for="total-volumenstrom">Gesamt-Volumenstrom aller Anlagen (m³/h)</label>
+                <input type="number" id="total-volumenstrom" value="105680" step="100">
+            </div>
+            <div class="total-results">
+                <p>Gesamter Wasserverbrauch (Netto): <strong id="total-water">-- l/h</strong></p>
+                <p>Gesamtes Kältepotential: <strong id="total-power">-- kW</strong></p>
             </div>
         </div>
     </main>
