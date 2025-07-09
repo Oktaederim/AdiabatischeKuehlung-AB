@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance-Rechner: Adiabate Kühlung</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>💧 Performance-Rechner: Adiabate Kühlung</h1>
+        <p class="subtitle">Analyse und Simulation eines adiabatischen Befeuchters</p>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>1. Analyse der Auslegungsdaten (gemäß Typenschild)</h2>
+            <div class="data-grid">
+                <div class="data-group">
+                    <h4>Eintritts-Bedingungen</h4>
+                    <p><strong>Temperatur:</strong> 26,0 °C</p>
+                    <p><strong>Rel. Feuchte:</strong> 50,0 %</p>
+                    <p><strong>Volumenstrom:</strong> 13.210 m³/h</p>
+                </div>
+                <div class="data-group">
+                    <h4>Austritts-Bedingungen (Soll)</h4>
+                    <p><strong>Temperatur:</strong> 19,0 °C</p>
+                    <p><strong>Rel. Feuchte:</strong> 97,0 %</p>
+                </div>
+                <div class="data-group results-box" id="design-results">
+                    <h4>Berechnete Auslegungs-Performance</h4>
+                    <p><strong>Befeuchterwirkungsgrad (η):</strong> <span id="res-eta-design">--</span> %</p>
+                    <p><strong>Wasserverbrauch:</strong> <span id="res-water-design">--</span> l/h</p>
+                    <p><strong>Sensibles Kältepotential:</strong> <span id="res-power-design">--</span> kW</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>2. Live-Analyse & Simulation</h2>
+            <div class="live-grid">
+                <div class="input-section">
+                    <h4>Aktuelle Betriebs-Werte eingeben:</h4>
+                    <div class="input-group">
+                        <label for="volumenstrom">Aktueller Volumenstrom (m³/h)</label>
+                        <input type="number" id="volumenstrom" value="13210" step="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="tempIn">Aktuelle Eintrittstemperatur (°C)</label>
+                        <input type="number" id="tempIn" value="26.0" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label for="rhIn">Aktuelle Eintrittsfeuchte (%)</label>
+                        <input type="number" id="rhIn" value="50.0" step="0.1">
+                    </div>
+                </div>
+
+                <div class="process-visualization">
+                    <div class="state-node" id="node-in">
+                        <h4>Zustand VOR Befeuchter</h4>
+                        <p>Temperatur (T): <strong id="vis-t-in">-- °C</strong></p>
+                        <p>Rel. Feuchte (rH): <strong id="vis-rh-in">-- %</strong></p>
+                        <p>Abs. Feuchte (x): <strong id="vis-x-in">-- g/kg</strong></p>
+                        <p>Enthalpie (h): <strong id="vis-h-in">-- kJ/kg</strong></p>
+                        <p>Feuchtkugel (T<sub>wb</sub>): <strong id="vis-twb-in">-- °C</strong></p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="component-node">
+                        <h4>Adiabatischer Prozess</h4>
+                        <p>Wirkungsgrad (η): <strong id="vis-eta">-- %</strong></p>
+                        <p>Wasserverbrauch: <strong id="vis-water">-- l/h</strong></p>
+                        <p>Kältepotential: <strong id="vis-power">-- kW</strong></p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="state-node" id="node-out">
+                        <h4>Zustand NACH Befeuchter</h4>
+                        <p>Temperatur (T): <strong id="vis-t-out">-- °C</strong></p>
+                        <p>Rel. Feuchte (rH): <strong id="vis-rh-out">-- %</strong></p>
+                        <p>Abs. Feuchte (x): <strong id="vis-x-out">-- g/kg</strong></p>
+                        <p>Enthalpie (h): <strong id="vis-h-out">-- kJ/kg</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><p>Performance-Rechner | Erstellt mit Gemini</p></footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
