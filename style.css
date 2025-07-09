@@ -27,6 +27,7 @@ h1, h2, h4 { color: var(--primary-color); margin-top: 0; }
 h1 { text-align: center; }
 p.info-text { text-align: center; color: var(--label-color); margin-top: -1rem; margin-bottom: 1.5rem; }
 .subtitle { text-align: center; color: var(--label-color); margin-top: -0.5rem; margin-bottom: 2rem; }
+hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
 
 /* Data Display Grids */
 .data-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
@@ -35,23 +36,22 @@ p.info-text { text-align: center; color: var(--label-color); margin-top: -1rem; 
 
 .results-box {
     background-color: var(--results-bg);
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid var(--primary-color);
+    border: 2px solid var(--primary-color);
 }
-.results-box h4 { margin-top: 0; font-size: 1em; }
-.results-box p { margin: 0.5rem 0; }
+.results-box h4 { margin-top: 0; font-size: 1.1em; text-align: center; }
+.results-box p { margin: 0.8rem 0; font-size: 1.05em; }
 .results-box span { font-weight: bold; float: right; }
 
 /* Input Section */
-.input-section { padding-right: 2rem; border-right: 1px solid var(--border-color); }
 .input-group { margin-bottom: 1rem; }
 .input-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; color: var(--label-color); }
 .input-group input { width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 6px; font-size: 1rem; box-sizing: border-box; }
 
 /* Process Visualization */
-.process-visualization { display: flex; flex-direction: column; justify-content: center; gap: 1rem; }
-@media (min-width: 992px) { .process-visualization { flex-direction: row; align-items: center; } }
+.process-visualization { display: flex; flex-direction: column; justify-content: center; gap: 1rem; margin-top: 2rem; }
+@media (min-width: 768px) { .process-visualization { flex-direction: row; align-items: center; } }
 .state-node {
     border: 2px solid var(--border-color);
     border-radius: 8px;
@@ -59,16 +59,11 @@ p.info-text { text-align: center; color: var(--label-color); margin-top: -1rem; 
     background-color: #fafafa;
     flex: 1;
 }
+.final-state { border-color: var(--primary-color); }
 .state-node h4 { text-align: center; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
 .state-node p { margin: 0.8rem 0; font-size: 0.95rem; }
 .state-node strong { float: right; color: var(--primary-color); }
 .arrow { font-size: 2.5rem; color: #ccc; text-align: center; transform: rotate(90deg); }
-@media (min-width: 992px) { .arrow { transform: rotate(0deg); } }
-
-/* Aggregate Card */
-.aggregate-card { background-color: var(--primary-color); color: white; }
-.aggregate-card h2, .aggregate-card label { color: white; }
-.total-results { margin-top: 1.5rem; font-size: 1.2rem; text-align: center; }
-.total-results strong { font-size: 1.5rem; display: block; margin-top: 0.5rem; }
+@media (min-width: 768px) { .arrow { transform: rotate(0deg); } }
 
 .footer { text-align: center; margin-top: 2rem; color: #888; font-size: 0.9rem; }
