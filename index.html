@@ -11,35 +11,40 @@
 <div class="container">
     <header>
         <h1>💧 Performance-Rechner: Adiabate Kühlung</h1>
-        <p class="subtitle">Analyse und Simulation eines adiabatischen Befeuchters</p>
+        <p class="subtitle">Simulation basierend auf System-Wirkungsgrad</p>
     </header>
 
     <main>
         <div class="card">
-            <h2>1. Anlagenauslegung (zur Ermittlung des Wirkungsgrades)</h2>
-            <p class="info-text">Geben Sie hier die bekannten Auslegungspunkte (z.B. vom Typenschild) ein. Daraus wird die Effizienz der Anlage berechnet.</p>
-            <div class="data-grid">
-                <div class="input-group"><label>Eintrittstemperatur (T<sub>ein</sub>)</label><input type="number" id="design-temp-in" value="26.0" step="0.1"></div>
-                <div class="input-group"><label>Eintrittsfeuchte (rH<sub>ein</sub>)</label><input type="number" id="design-rh-in" value="50.0" step="0.1"></div>
-                <div class="input-group"><label>Austrittstemperatur (T<sub>aus</sub>)</label><input type="number" id="design-temp-out" value="20.0" step="0.1"></div>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>2. Live-Performance & Simulation</h2>
+            <h2>Analyse & Simulation</h2>
             <div class="live-grid">
                 <div class="input-section">
-                    <h4>Aktuelle Betriebs-Werte:</h4>
-                    <div class="input-group"><label for="volumenstrom">Volumenstrom (m³/h)</label><input type="number" id="volumenstrom" value="13210" step="100"></div>
-                    <div class="input-group"><label for="live-temp-in">Eintrittstemperatur (°C)</label><input type="number" id="live-temp-in" value="26.0" step="0.1"></div>
-                    <div class="input-group"><label for="live-rh-in">Eintrittsfeuchte (%)</label><input type="number" id="live-rh-in" value="50.0" step="0.1"></div>
+                    <h4>System- & Betriebs-Parameter</h4>
+                    <div class="input-group">
+                        <label for="wirkungsgrad">System-Wirkungsgrad η (%)</label>
+                        <input type="number" id="wirkungsgrad" value="90.0" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label for="volumenstrom">Volumenstrom (m³/h)</label>
+                        <input type="number" id="volumenstrom" value="5600" step="100">
+                    </div>
+                    <div class="input-group">
+                        <label for="live-temp-in">Eintrittstemperatur T<sub>ein</sub> (°C)</label>
+                        <input type="number" id="live-temp-in" value="26.0" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label for="live-rh-in">Eintrittsfeuchte rH<sub>ein</sub> (%)</label>
+                        <input type="number" id="live-rh-in" value="50.0" step="0.1">
+                    </div>
                 </div>
 
                 <div class="results-box" id="design-results">
-                    <h4>Berechnete Performance bei aktuellen Werten</h4>
-                    <p><strong>System-Wirkungsgrad (η):</strong> <span id="res-eta-system">--</span> %</p>
+                    <h4>Berechnete Performance</h4>
                     <p><strong>Wasserverbrauch (Netto):</strong> <span id="res-water-live">--</span> l/h</p>
                     <p><strong>Sensibles Kältepotential:</strong> <span id="res-power-live">--</span> kW</p>
+                    <hr>
+                    <p><strong>Berechnete Austritts-T:</strong> <span id="res-temp-out">--</span> °C</p>
+                    <p><strong>Berechnete Austritts-rH:</strong> <span id="res-rh-out">--</span> %</p>
                 </div>
             </div>
             <hr>
