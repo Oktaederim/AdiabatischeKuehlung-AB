@@ -25,12 +25,9 @@ body {
 }
 h1, h2, h4 { color: var(--primary-color); margin-top: 0; }
 h1 { text-align: center; }
-p.info-text { text-align: center; color: var(--label-color); margin-top: -1rem; margin-bottom: 1.5rem; }
 .subtitle { text-align: center; color: var(--label-color); margin-top: -0.5rem; margin-bottom: 2rem; }
 hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
 
-/* Data Display Grids */
-.data-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 .live-grid { display: grid; gap: 2rem; grid-template-columns: 1fr; }
 @media (min-width: 992px) { .live-grid { grid-template-columns: 320px 1fr; } }
 
@@ -43,14 +40,15 @@ hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
 .results-box h4 { margin-top: 0; font-size: 1.1em; text-align: center; }
 .results-box p { margin: 0.8rem 0; font-size: 1.05em; }
 .results-box span { font-weight: bold; float: right; }
+.results-box hr { margin: 1rem 0; border-top: 1px solid var(--border-color); }
 
-/* Input Section */
+
+.input-section { padding-right: 2rem; border-right: 1px solid var(--border-color); }
 .input-group { margin-bottom: 1rem; }
 .input-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; color: var(--label-color); }
 .input-group input { width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 6px; font-size: 1rem; box-sizing: border-box; }
 
-/* Process Visualization */
-.process-visualization { display: flex; flex-direction: column; justify-content: center; gap: 1rem; margin-top: 2rem; }
+.process-visualization { display: flex; flex-direction: column; justify-content: center; gap: 1rem; }
 @media (min-width: 768px) { .process-visualization { flex-direction: row; align-items: center; } }
 .state-node {
     border: 2px solid var(--border-color);
